@@ -6,7 +6,7 @@
 
 * [An Introduction to iBatis (MyBatis)](https://javamagic.wordpress.com/2012/02/22/an-introduction-to-ibatis-mybatis-an-alternative-to-hibernate-and-jdbc/)
 
-* [Mybatis3 从入门到精通](http://http://mybatis.tk/)
+* [Mybatis3 从入门到精通](http://mybatis.tk/)
 
 #### 2. 测试报告
 
