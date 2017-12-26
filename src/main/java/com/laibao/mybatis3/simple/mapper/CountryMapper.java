@@ -12,5 +12,8 @@ import java.util.List;
  */
 public interface CountryMapper {
     public List<Country> selectAll();
-    public Country selectById(@Param("id") long id);
+    public void insertCountry(Country country);
+    public Country selectCountryById(@Param("id") long id);
+    public void updateCountry(Country country);
+    public void deleteCountryById(@Param("id") long id);
 }

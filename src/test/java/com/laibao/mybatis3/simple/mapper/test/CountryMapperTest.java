@@ -33,6 +33,56 @@ public class CountryMapperTest {
         }
     }
 
+    @Test
+    public void testInsertCountry() {
+        SqlSession sqlSession = sqlSessionFactory.openSession();
+        try{
+            Country country = new Country();
+            country.setCountryName("小日本");
+            country.setCountryCode("XRB");
+            CountryMapper countryMapper = sqlSession.getMapper(CountryMapper.class);
+            countryMapper.insertCountry(country);
+            sqlSession.commit(true);     //必须要调用这个方法，否则无法保存入库,commit 默认是false的
+        }catch (Exception ex) {
+            ex.printStackTrace();
+        }finally {
+            sqlSession.close();
+        }
+    }
+
+    @Test
+    public void testUpdateCountry() {
+        SqlSession sqlSession = sqlSessionFactory.openSession();
+        try {
+            long id = 11;
+            CountryMapper countryMapper = sqlSession.getMapper(CountryMapper.class);
+            Country country = countryMapper.selectCountryById(id);
+            country.setCountryName("狗日的小日本!");
+            country.setCountryCode("GRDRB");
+            countryMapper.updateCountry(country);
+            sqlSession.commit(true);    //必须要调用这个方法，否则无法保存入库,commit 默认是false的
+        }catch (Exception ex) {
+            ex.printStackTrace();
+        } finally {
+            sqlSession.close();
+        }
+    }
+
+
+    @Test
+    public void testDeleteCountryById() {
+        SqlSession sqlSession = sqlSessionFactory.openSession();
+        try {
+            long id = 10;
+            CountryMapper countryMapper = sqlSession.getMapper(CountryMapper.class);
+            countryMapper.deleteCountryById(id);
+            sqlSession.commit(true);    //必须要调用这个方法，否则无法保存入库,commit 默认是false的
+        }catch (Exception ex) {
+            ex.printStackTrace();
+        } finally {
+            sqlSession.close();
+        }
+    }
 
     @Test
     public void testSelectAll(){
@@ -54,9 +104,9 @@ public class CountryMapperTest {
     public void testSelectById() {
         SqlSession sqlSession = sqlSessionFactory.openSession();
         try {
-            long id = 1;
+            long id = 11;
             CountryMapper countryMapper = sqlSession.getMapper(CountryMapper.class);
-            Country country = countryMapper.selectById(id);
+            Country country = countryMapper.selectCountryById(id);
             System.out.println(JSON.toJSONString(country));
         }catch (Exception ex) {
             ex.printStackTrace();

@@ -11,6 +11,19 @@
 		<result property="updatedTime" column="updated_time"/>
 	</resultMap>
 
+	<insert id="insertCountry" parameterType="com.laibao.mybatis3.simple.model.Country">
+		insert into country(
+		  country_name,
+		  country_code
+		)
+
+		values
+		(
+		  #{countryName},
+		  #{countryCode}
+		)
+	</insert>
+
 	<select id="selectAll" resultMap="countryResultMap">
 		select id,country_name,country_code from country
 	</select>
@@ -22,11 +35,21 @@
 		<!--where id = #{id}-->
 	<!--</select>-->
 
-	<select id="selectById" resultMap="countryResultMap">
+	<select id="selectCountryById" resultMap="countryResultMap">
 		select id,country_name,country_code
 		from country
 		where id = #{id}
 	</select>
 
+	<update id="updateCountry" parameterType = "com.laibao.mybatis3.simple.model.Country">
+		update country
+		set
+			country_name = #{countryName},
+			country_code = #{countryCode}
+		where id = #{id}
+	</update>
 
+	<delete id="deleteCountryById">
+		delete from country where id = #{id}
+	</delete>
 </mapper>
