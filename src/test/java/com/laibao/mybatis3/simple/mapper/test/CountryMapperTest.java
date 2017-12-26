@@ -1,5 +1,6 @@
 package com.laibao.mybatis3.simple.mapper.test;
 
+import com.alibaba.fastjson.JSON;
 import com.laibao.mybatis3.simple.mapper.CountryMapper;
 import com.laibao.mybatis3.simple.model.Country;
 import org.apache.ibatis.io.Resources;
@@ -40,7 +41,8 @@ public class CountryMapperTest {
             //List<Country> countryList = sqlSession.selectList("selectAll");
             CountryMapper countryMapper = sqlSession.getMapper(CountryMapper.class);
             List<Country> countryList = countryMapper.selectAll();
-            printCountryList(countryList);
+            //printCountryList(countryList);
+            System.out.println(JSON.toJSONString(countryList));
         }catch (Exception ex) {
             ex.printStackTrace();
         } finally {
@@ -48,7 +50,22 @@ public class CountryMapperTest {
         }
     }
 
+    @Test
+    public void testSelectById() {
+        SqlSession sqlSession = sqlSessionFactory.openSession();
+        try {
+            long id = 1;
+            CountryMapper countryMapper = sqlSession.getMapper(CountryMapper.class);
+            Country country = countryMapper.selectById(id);
+            System.out.println(JSON.toJSONString(country));
+        }catch (Exception ex) {
+            ex.printStackTrace();
+        } finally {
+            sqlSession.close();
+        }
+    }
 
+    @Deprecated
     private void printCountryList(List<Country> countryList){
         for(Country country : countryList){
             System.out.printf("%-4d%4s%4s\n",country.getId(), country.getCountryName(), country.getCountryCode());
