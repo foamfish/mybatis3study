@@ -1,5 +1,6 @@
 package com.laibao.mybatis3.simple.mapper.test;
 
+import com.laibao.mybatis3.simple.mapper.CountryMapper;
 import com.laibao.mybatis3.simple.model.Country;
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
@@ -14,7 +15,7 @@ import java.util.List;
 
 /**
  * @author laibao wang
- * @date 2017-12-24
+ * @date 2017-12-26
  * @version 1.0
  */
 public class CountryMapperTest {
@@ -36,8 +37,12 @@ public class CountryMapperTest {
     public void testSelectAll(){
         SqlSession sqlSession = sqlSessionFactory.openSession();
         try {
-            List<Country> countryList = sqlSession.selectList("selectAll");
+            //List<Country> countryList = sqlSession.selectList("selectAll");
+            CountryMapper countryMapper = sqlSession.getMapper(CountryMapper.class);
+            List<Country> countryList = countryMapper.selectAll();
             printCountryList(countryList);
+        }catch (Exception ex) {
+            ex.printStackTrace();
         } finally {
             sqlSession.close();
         }
