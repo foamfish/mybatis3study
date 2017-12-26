@@ -6,10 +6,10 @@ import java.util.List;
 
 /**
  * @author laibao wang
- * @date 2017-12-24
+ * @date 2017-12-26
  * @version 1.0
  */
 
 public interface CountryMapper {
-    List<Country> selectAll();
+    public List<Country> selectAll();
 }
