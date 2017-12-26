@@ -15,4 +15,18 @@
 		select id,country_name,country_code from country
 	</select>
 
+	<!--<select id="selectById" resultType="com.laibao.mybatis3.simple.model.Country">-->
+	    <!-- it is wrong in this way !!!! -->
+		<!--select id,country_name,country_code-->
+		<!--from country-->
+		<!--where id = #{id}-->
+	<!--</select>-->
+
+	<select id="selectById" resultMap="countryResultMap">
+		select id,country_name,country_code
+		from country
+		where id = #{id}
+	</select>
+
+
 </mapper>
