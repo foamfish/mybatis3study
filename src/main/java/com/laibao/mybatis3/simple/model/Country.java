@@ -1,5 +1,6 @@
 package com.laibao.mybatis3.simple.model;
 
+import java.io.Serializable;
 import java.util.Date;
 
 /**
@@ -8,11 +9,32 @@ import java.util.Date;
  * @version 1.0
  *
  */
-public class Country {
+public class Country implements Serializable{
+	private static final long serialVersionUID = 8367952379941175031L;
+
+	/**
+	 * 自增主键
+     */
 	private long id;
+
+	/**
+	 * 国家的名称
+     */
 	private String countryName;
+
+	/**
+	 * 国家的编码
+     */
 	private String countryCode;
+
+	/**
+	 *  创建时间
+     */
 	private Date createdTime;
+
+	/**
+	 *  更新时间
+     */
 	private Date updatedTime;
 
 	public Country() {
